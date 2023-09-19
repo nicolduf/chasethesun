@@ -1,71 +1,53 @@
 body {
-    margin: 0;
-
-    background: url(../images/BEACH.jpg) no-repat;
-    background-size: cover;
-    text-align: center;
-    font-family: Krungthep;
+  padding: 0;
+  background-image: url(../images/BEACH.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  font-family: Krungthep;
 }
 
 #game-intro {
-    padding: 250px 0px;
-    background-image: url(../images/BEACH.jpg);
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  padding: 0px 0px;
+  align-content: center;
+  background-repeat: no-repeat;
+
 }
 
 #game-container {
-    display: flex;
-    width: 100vw;
-    padding: 0px 0px;
-    justify-content: center;
+  width: 100vw;
+  justify-content: center;
 }
 
 #game-screen {
-    padding: 250px 0px;
-    background-image: url(../images/BEACH.jpg);
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-@keyframes slide {
-    0% {
-        background-position: 0 -1000px;
-    }
-    95% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 0 50px;
-    }
+  padding: 0px 0px;
+  height:100%;
+  align-content: center;
+  background-image: url(./images/BEACH.jpg);
+  background-repeat: no-repeat;
 }
 
 #game-end {
-    display: none;
+  display: none;
 }
 
 .game-intro p {
-    font-size: 18px;
-    font-family: krungthep;
-}
-
-.logo-img {
-    width: 350px;
+  font-size: 18px;
+  font-family: "Krungthep";
 }
 
 body button {
-    font-size: 30px;
-    background-colour: black
-    color: white;
-    padding: 20px 40px;
-    border: 0
-    box-shadow: 0;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-family: Krungthep;
-
+  font-size: 30px;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 20px 40px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-family: Krungthep;
 }

@@ -1,83 +1,75 @@
 class Game {
-    constructor () {
-        this.startScreen = document.getElementById("game-intro");
-        this.gameScreen = document.getElementById("game-screen");
-        this.gameEndScreenWin = document.getElementById("game-end-win");
-        this.gameEndScreenLose = document.getElementById("game-end-lose");
-        this.player = new Player(
-            this.gameScreen,
-            200,
-            500,
-            100,
-            150,
-            "./images/Heart.jpg"
+  constructor() {
+    this.startScreen = document.getElementById('game-intro')
+    this.gameScreen = document.getElementById('game-screen')
+    this.gameEndScreen = document.getElementById('game-end')
+    this.height = 1000
+    this.width = 1400
+    this.player = new Player(this.gameScreen, 700, 600, 50, 50)
+    this.obstacles = []
+    this.animateId = 0
+    this.score = 0
+    this.lives = 3
+    this.gameOver = false
+  }
+
+  start() {
+    this.startScreen.style.display = 'none'
+    this.gameEndScreen.style.display = 'none'
+    this.gameScreen.style.display = 'block'
+
+    this.gameScreen.style.height = `${this.height}px`
+    this.gameScreen.style.width = `${this.width}px`
+
+    this.gameLoop()
+  }
+
+  gameLoop() {
+    this.update()
+
+   if (this.animateId % 500 === 0) {
+      this.obstacles.push(
+        new Obstacle(
+          this.gameScreen,
+          Math.random() * (this.gameScreen.clientWidth - 40 - 100) + 50,
+          -200,
+          80,
+          40
         )
-        this.height = 600;
-        this.width = 500;
-        this.obstacles = [];
-        this.score = 0;
-        this.lives = 3;
-        this.gameIsOver = false;
+      ) //NEED TO CHECK THIS ^^^^^^
     }
 
-    start() {
-        this.gameScreen.style.height = `${this.height}px`;
-        this.gameScreen.style.width = `${this.width}px`;
+    document.getElementById('score').innerText = this.score
+    document.getElementById('lives').innerText = this.lives
 
-        this.startScreen.style.display = "none";
-        this.gameScreen.style.display = "block";
-
-        this.gameLoop ();
+    if (this.lives < 1) {
+      this.gameOver = true
     }
 
-    gameLoop() {
-        console.log("in the game loop") //maybe change
-
-        if (this.gameIsOver) {
-            return;
-        }
-
-        this.update ();
-
-        window.requestAnimationFrame(() => this.gameLoop());
+    if (this.gameOver) {
+      this.gameScreen.style.display = 'none'
+      this.gameEndScreen.style.display = 'block'
+    } else {
+      this.animateId = requestAnimationFrame(() => this.gameLoop())
     }
+  }
 
-    update() {
-        this.player.move();
-
-        for (let i = 0; i < this.obstacles.length; i++) {
-            const obstacle = this.obstacles[i];
-            obstacle.move();
-
-            if (this.player.didCollide(obstacle)) {
-                obstacle.element.remove();
-                this. obstacles.splice(i, 1);
-                this.lives--;
-                i--;
-            }
-            else if (obstacle.top > this.height) {
-                this.score++;
-                obstacle.element.remove();
-                this.obstacles.splice(i, 1);
-                i--;
-            }
-        }
-
-        if (this.lives === 0) {
-            this.endGame();
-        }
-
-        if (Math.random() > 0.98 && this.obstacles.length < 1) {
-            this.obstacles.push(new Obstacle(this.gameScreen));
-        }
-    }
-
-    endGame() {
-        this.player.element.remove();
-        this.obstacles.forEach(function (obstacle) {
-            obstacle.element.remove();
-        });
-
-        //NEED RESEARCH ON 2 DIFFERENT END SCREENS
-    }
+  update() {
+    this.player.move()
+    console.log(this.obstacles)
+    const nextObstacles = []
+    this.obstacles.forEach(obstacle => {
+      obstacle.move()
+      if (this.player.didCollide(obstacle)) {
+        this.lives -= 1
+        obstacle.element.remove()
+      } else if (obstacle.top > this.gameScreen.clientHeight) {
+        this.score += 1
+        obstacle.element.remove()
+      } else {
+        nextObstacles.push(obstacle)
+      }
+    })
+    this.obstacles = nextObstacles
+  }
 }

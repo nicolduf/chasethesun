@@ -1,66 +1,65 @@
 class Player {
-    constructor (gameScreen, left, top, width, height, imgSrc) {
-        this.gameScreen = gameScreen;
-        this.left = left;
-        this.top = top;
-        this.width = width;
-        this.height = height;
-        this.directionX = 0;
-        this.directionY = 0;
-        this.element = document.createElement("img");
+  constructor(gameScreen, left, top, height, width) {
+    this.gameScreen = gameScreen
+    this.left = left
+    this.top = top
+    this.height = height
+    this.width = width
+    this.directionX = 0
+    this.directionY = 0
+    this.element = document.createElement('img')
 
-        this.element.src = imgSrc;
-        this.element.style.position = "absolute";
-        this.element.style.height = `${width}px`;
-        this.element.style.height = `${height}px`;
-        this.element.style.left = `${left}px`;
-        this.element.style.top = `${top}px`;
+    this.element.src = 'images/Heart.jpg'
 
-        this.gameScreen.appendChild(this.element);
+    this.element.style.position = 'absolute'
+    this.element.style.left = `${this.left}px`
+    this.element.style.top = `${this.top}px`
+    this.element.style.height = `${this.height}px`
+    this.element.style.width = `${this.width}px`
+
+    this.gameScreen.appendChild(this.element)
+  }
+
+  move() {
+    this.updatePosition()
+    this.element.style.left = `${this.left}px`
+    this.element.style.top = `${this.top}px`
+  }
+
+  updatePosition() {
+    if (this.left < 50) {
+      this.left = 50
+    } else if (this.left > this.gameScreen.clientWidth - 50 - this.width) {
+      this.left = this.gameScreen.clientWidth - 50 - this.width
+    } else {
+      this.left += this.directionX
     }
 
-    move() {
-        this.left += this.directionX;
-        this.top += this.directiomY;
-
-        if (this.left < 10) {
-            this.left = 10;
-        }
-
-        if (this.top < 10) {
-            this.top = 10;
-        }
-
-        if (this.left > this.gameScreen.offSetWidth - this.width - 10) {
-            this.left = this.gameScreen.offSetWidth - this.height - 10;
-        }
-
-        if (this.top > this.gameScreen.offsetHeight - this.height - 10) {
-            this.top = this.gameScreen.offsetHeight - this.height - 10;
-          }
-
-        this.updatePosition();
+    if (this.top < 20) {
+      this.top = 20
+    } else if (this.top > this.gameScreen.clientHeight - 20 - this.height) {
+      this.top = this.gameScreen.clientHeight - 20 - this.height
+    } else {
+      this.top += this.directionY
     }
+  }
 
-    updatePosition() {
-        this.element.style.left = `${this.left}px`;
-        this.element.style.top = `${this.top}px`;
+  didCollide(obstacle) {
+    const playerRect = this.element.getBoundingClientRect()
+    const obstacleRect = obstacle.element.getBoundingClientRect()
+
+    if (
+      playerRect.left < obstacleRect.right &&
+      playerRect.right > obstacleRect.left &&
+      playerRect.top < obstacleRect.bottom &&
+      playerRect.bottom > obstacleRect.top
+    ) {
+      return true
+    } else {
+      return false
     }
+  }
 
-    didColide(obsticle) {
-        const playerRect = this.element.getBoundingClientRect ();
-        const obstacleRect = obsticle.element.getBoundingClientRect ();
 
-        if (
-            playerRect.left < obstacleRect.right &&
-            playerRect.right > obstacleRect.left &&
-            playerRect.top < obstacleRect.bottom &&
-            playerRect.bottom > obstacleRect.top
-        ) {
-            return true;
-        } 
-        else {
-            return false;
-        }
-    }
-}
+
+}  
