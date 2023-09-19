@@ -4,7 +4,14 @@ class Game {
         this.gameScreen = document.getElementById("game-screen");
         this.gameEndScreenWin = document.getElementById("game-end-win");
         this.gameEndScreenLose = document.getElementById("game-end-lose");
-        //add player info
+        this.player = new Player(
+            this.gameScreen,
+            200,
+            500,
+            100,
+            150,
+            "./images/Heart.jpg"
+        )
         this.height = 600;
         this.width = 500;
         this.obstacles = [];

@@ -1,28 +1,35 @@
 body {
-    padding: 0;
+    margin: 0;
+
+    background: url(../images/BEACH.jpg) no-repat;
+    background-size: cover;
     text-align: center;
+    font-family: Krungthep;
 }
 
 #game-intro {
-    padding: 20px 0px;
+    padding: 250px 0px;
+    background-image: url(../images/BEACH.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #game-container {
     display: flex;
     width: 100vw;
-    padding: 20px 0px;
+    padding: 0px 0px;
     justify-content: center;
 }
 
 #game-screen {
-    display: none;
-    align-content: center;
-    padding: 20px 0px;
-    overflow: hidden;
-    position: relative;
-    background-image: url()
+    padding: 250px 0px;
+    background-image: url(../images/BEACH.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    animation: slide 5s linear infinite;
 }
 
 @keyframes slide {
@@ -43,7 +50,7 @@ body {
 
 .game-intro p {
     font-size: 18px;
-    font-family: "krungthep";
+    font-family: krungthep;
 }
 
 .logo-img {
@@ -59,5 +66,6 @@ body button {
     box-shadow: 0;
     border-radius: 5px;
     margin-bottom: 20px;
+    font-family: Krungthep;
 
 }
