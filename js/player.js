@@ -27,21 +27,8 @@ class Player {
   }
 
   updatePosition() {
-    if (this.left < 50) {
-      this.left = 50
-    } else if (this.left > this.gameScreen.clientWidth - 50 - this.width) {
-      this.left = this.gameScreen.clientWidth - 50 - this.width
-    } else {
-      this.left += this.directionX
-    }
-
-    if (this.top < 20) {
-      this.top = 20
-    } else if (this.top > this.gameScreen.clientHeight - 20 - this.height) {
-      this.top = this.gameScreen.clientHeight - 20 - this.height
-    } else {
-      this.top += this.directionY
-    }
+    console.log("hello", this.directionX);
+    this.left += this.directionX
   }
 
   didCollide(obstacle) {

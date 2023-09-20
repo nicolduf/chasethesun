@@ -3,10 +3,11 @@ class Game {
     this.startScreen = document.getElementById('game-intro')
     this.gameScreen = document.getElementById('game-screen')
     this.gameEndScreen = document.getElementById('game-end')
-    this.height = 1000
-    this.width = 1400
+    this.height = 600
+    this.width = 800
     this.player = new Player(this.gameScreen, 700, 600, 50, 50)
     this.obstacles = []
+    this.suns = []
     this.animateId = 0
     this.score = 0
     this.lives = 3
@@ -31,12 +32,24 @@ class Game {
       this.obstacles.push(
         new Obstacle(
           this.gameScreen,
-          Math.random() * (this.gameScreen.clientWidth - 40 - 100) + 50,
-          -200,
+          Math.random() * (this.gameScreen.clientWidth - 0 - 10) + 350,
+          -400,
           80,
           40
         )
-      ) //NEED TO CHECK THIS ^^^^^^
+      )
+    }
+
+    if (this.animateId % 500 === 0) { //SUNS
+      this.suns.push(
+        new Suns(
+          this.gameScreen,
+          Math.random() * (this.gameScreen.clientWidth - 0 - 10) + 350,
+          -400,
+          80,
+          40
+        )
+      )
     }
 
     document.getElementById('score').innerText = this.score
@@ -56,20 +69,37 @@ class Game {
 
   update() {
     this.player.move()
-    console.log(this.obstacles)
     const nextObstacles = []
     this.obstacles.forEach(obstacle => {
       obstacle.move()
       if (this.player.didCollide(obstacle)) {
         this.lives -= 1
         obstacle.element.remove()
-      } else if (obstacle.top > this.gameScreen.clientHeight) {
-        this.score += 1
-        obstacle.element.remove()
-      } else {
+      } 
+      else {
         nextObstacles.push(obstacle)
       }
     })
     this.obstacles = nextObstacles
+
+
+
+    this.player.move() //SUNS
+    const nextSuns = []
+    this.suns.forEach(suns => {
+      suns.move()
+      if (this.player.didCollide(suns)) {
+        this.score += 1
+        suns.element.remove()
+      } 
+      else if (suns.top > this.gameScreen.clientHeight) {
+        this.score += 0
+        suns.element.remove()
+      }
+      else {
+        nextSuns.push(suns)
+      }
+    })
+    this.suns = nextSuns
   }
 }

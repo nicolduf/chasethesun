@@ -35,6 +35,10 @@ body {
   display: none;
 }
 
+#reset-button {
+  display: none
+}
+
 .game-intro p {
   font-size: 18px;
   font-family: "Krungthep";

@@ -1,4 +1,4 @@
-class Obstacle {
+class Suns {
     constructor(gameScreen, left, top, height, width) {
       this.gameScreen = gameScreen
       this.left = left
@@ -7,7 +7,7 @@ class Obstacle {
       this.width = width
       this.element = document.createElement('img')
   
-      this.element.src = './images/rain.png'  
+      this.element.src = './images/SUN.png'  
       this.element.style.position = 'absolute'
       this.element.style.left = `${this.left}px`
       this.element.style.top = `${this.top}px`
@@ -23,6 +23,6 @@ class Obstacle {
     }
   
     updatePosition() {
-      this.top += 1
+      this.top += 4
     }
   }
