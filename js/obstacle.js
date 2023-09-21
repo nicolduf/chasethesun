@@ -23,6 +23,6 @@ class Obstacle {
     }
   
     updatePosition() {
-      this.top += 2
+      this.top += 3
     }
   }

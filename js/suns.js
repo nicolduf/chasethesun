@@ -23,6 +23,6 @@ class Suns {
     }
   
     updatePosition() {
-      this.top += 4
+      this.top += 5
     }
   }

@@ -5,7 +5,7 @@ class Game {
     this.gameEndScreen = document.getElementById('game-end')
     this.height = 600
     this.width = 800
-    this.player = new Player(this.gameScreen, 700, 600, 80, 80)
+    this.player = new Player(this.gameScreen, 700, 600, 100, 100)
     this.obstacles = []
     this.suns = []
     this.animateId = 0
@@ -28,7 +28,7 @@ class Game {
   gameLoop() {
     this.update()
 
-   if (this.animateId % 500 === 0) {
+   if (this.animateId % 200 === 0) {
       this.obstacles.push(
         new Obstacle(
           this.gameScreen,
@@ -99,6 +99,7 @@ class Game {
       } 
       else if (suns.top > this.gameScreen.clientHeight) {
         this.score += 0
+        this.lives -= 1
         suns.element.remove()
       }
       else {
