@@ -3,6 +3,23 @@ window.addEventListener('load', () => {
     const restartButton = document.getElementById('restart-button')
   
     let game
+
+
+    let play = document.getElementById("play-music");
+
+    function playMusic() {
+      audio = new Audio("GAME MUSIC.mp3");
+      audio.play()
+    }
+    play.addEventListener("click", playMusic)
+    
+    function stopAudio() {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+    play.addEventListener("click2", stopAudio)
+    
+
   
     function startGame() {
       console.log('start game')
