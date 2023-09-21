@@ -5,7 +5,7 @@ class Game {
     this.gameEndScreen = document.getElementById('game-end')
     this.height = 600
     this.width = 800
-    this.player = new Player(this.gameScreen, 700, 600, 50, 50)
+    this.player = new Player(this.gameScreen, 700, 600, 80, 80)
     this.obstacles = []
     this.suns = []
     this.animateId = 0
@@ -34,8 +34,8 @@ class Game {
           this.gameScreen,
           Math.random() * (this.gameScreen.clientWidth - 0 - 10) + 350,
           -400,
-          80,
-          40
+          120,
+          60
         )
       )
     }
@@ -47,7 +47,7 @@ class Game {
           Math.random() * (this.gameScreen.clientWidth - 0 - 10) + 350,
           -400,
           80,
-          40
+          80
         )
       )
     }
@@ -76,6 +76,11 @@ class Game {
         this.lives -= 1
         obstacle.element.remove()
       } 
+      else if (obstacle.top > this.gameScreen.clientHeight) {
+        this.score += 0
+        obstacle.element.remove()
+      }  
+      
       else {
         nextObstacles.push(obstacle)
       }
