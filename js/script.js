@@ -5,20 +5,20 @@ window.addEventListener('load', () => {
     let game
 
 
-    let play = document.getElementById("play-music");
+    const audio = document.getElementById('myAudio');
+    const playButton = document.getElementById('play-music');
 
-    function playMusic() {
-      audio = new Audio("GAME MUSIC.mp3");
-      audio.play()
-    }
-    play.addEventListener("click", playMusic)
-    
-    function stopAudio() {
-      audio.pause();
-      audio.currentTime = 0;
-    }
-    play.addEventListener("click2", stopAudio)
-    
+    playButton.addEventListener('click', () => {
+      if (audio.paused) {
+          audio.play();
+          playButton.textContent = 'Pause Music';
+      } else {
+          audio.pause();
+          playButton.textContent = 'Play Music';
+      }
+      audio.volume = 0.3;
+  });
+
 
   
     function startGame() {

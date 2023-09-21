@@ -11,26 +11,41 @@
 
 <body>
   <main>
-    <!-- #game-intro is initially shown on the game start screen -->
-    <div id="game-intro">
-      <br />
-      <br />
-      <button id="play-music">Play Music</button>
-      <br /> 
-      <br />
-      <button id="start-button">Start Game</button>
-      <p>WRITE DESCRIPTION HERE !!!</p>
-    </div>
 
     <div id="game-container">
-      <div>
+       <br />
+       <br />
+       <audio id="myAudio" src="SNOOP.mp3"></audio>
+       <button1 id="play-music">Play Music</button1>
+       <br />
         <h2>Stats</h2>
         <p>Score: <span id="score">0</span></p>
         <p>Lives: <span id="lives">3</span></p>
-      </div>
+    </div>
+
+
+
+    <!-- #game-intro is initially shown on the game start screen -->
+    <div id="game-intro">
+      <br /> 
+      <br />
+      <button id="start-button">Start Game</button>
+      <p>Doggo needs a tan!</p>
+      <br /> <img src = "images/DOG 2.png" 
+      alt= "doggo"  
+      class = "center1">
+      <br />
+      <br />Using the arrow pad, help him catch the sun and dodge the rain
+      <br />
+    </div>
+
+
       <!-- #game-screen is initially hidden using CSS style display: none -->
       <div id="game-screen"></div>
-    </div>
+      <audio id="collisionSound">
+        <source src="GAME MUSIC 2.mp3" type="audio/mpeg">
+      </audio>
+      </div>
 
     <!-- #game-end is initially hidden using CSS style display: none -->
    <div id="game-end">

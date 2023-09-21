@@ -27,7 +27,7 @@ class Player {
   }
 
   updatePosition() {
-    console.log("hello", this.directionX);
+    console.log(this.directionX);
     this.left += this.directionX
   }
 
